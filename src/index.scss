@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap');
+
+
+$colors: (
+  //Primary
+  desatDarkCyan: hsl(180, 29%, 50%),
+  //Neutral
+  lightGrayCyan_BG : hsl(180, 52%, 96%),
+  lightGrayCyan_filter: hsl(180, 31%, 95%),
+  darkGrayCyan: hsl(180, 8%, 52%),
+  vDarkGrayCyan: hsl(180, 14%, 20%),
+  //Custom
+  lightGrayDots: hsl(0, 0%, 78%)
+);
+
+@function color ($color-name) {
+   @return map-get($colors, $color-name);
+}
+
+$desktop: 900px;
+
+@mixin mobile {
+  @media (max-width: #{$desktop}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
+
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  font-family: 'Spartan', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: color(lightGrayCyan_BG);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a {
+  text-decoration: none;
+  color: color(vDarkGrayCyan);
+  font-weight: bold;
+}
+
+button {
+  border-style: none;
+  background-color: color(lightGrayCyan_filter);
+  color: color(desatDarkCyan);
+  font-family: inherit;
+  font-weight: bold;
+  padding: 8px 10px 5px 8px;
+  margin-left: 18px;
+  @include mobile {
+    margin-left: 0;
+    margin-right: 16px;
+  }
+  margin-bottom: 9px;
+  margin-top: 9px;
+  border-radius: 6px;
+}
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px 50px;
+  @include mobile {
+    padding: 50px 24px;
+  }
+  width: 100%;
+  position: relative;
+  .filters {
+    display: flex;
+    align-items: center;
+    background: white;
+    @include desktop {
+      height: 72px;
+    }
+    margin-top: -86px;
+    padding: 0 40px;
+    border-radius: 6px;
+    box-shadow: 0 18px 20px -11px rgba(134,160,161,0.4);
+    @include mobile {
+      padding: 0 20px;
+    }
+    .filter-btn-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      display: flex;
+      align-items: center;
+      padding: 0 0 0 8px;
+      img {
+        padding: 12px;
+        background-color: color(desatDarkCyan);
+        margin-left: 5px;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        &:hover {
+          cursor: pointer;
+          background-color: color(vDarkGrayCyan);
+        }
+      }
+    }
+    .clear-btn {
+      margin-left: auto;
+      background-color: white;
+      margin-right: 0;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.top-bar {
+  height: 155px;
+  background: url('./images/bg-header-desktop.svg') no-repeat;
+  background-color: color(desatDarkCyan);
+  background-size: cover;
+  width: 100%;
+}
+
+.job {
+    img {
+      height: 88px;
+      object-fit: contain;
+      @include mobile {
+        height: 48px;
+        position: absolute;
+        top: -24px;
+        left: 24px;
+      }
+    }
+    position: relative;
+    height: 153px;
+    display: flex;
+    align-items: center;
+    min-width: fit-content;
+    @include mobile {
+      height: fit-content;
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 56px 0;
+      padding: 32px 24px 24px 24px;
+    }
+    border-radius: 6px;
+    background-color: white;
+    width: 100%;
+    margin: 24px 0;
+    padding: 30px 40px;
+    box-shadow: 0 18px 20px -11px rgba(134,160,161,0.4);
+    button:hover {
+      cursor: pointer;
+      background-color: color(desatDarkCyan);
+      color: white;
+    }
+    .job-details {
+      padding-left: 20px;
+      @include mobile {
+        padding-left: 0;
+      }
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      span {
+        white-space: nowrap;
+      }
+      a {
+        font-size: 17px;
+        font-family: inherit;
+        width: fit-content;
+        &:hover {
+          color: color(desatDarkCyan);
+        }
+        @include mobile {
+          font-size: 16px;
+          margin-top: 10px;
+          margin-bottom: 18px;
+        }
+      }
+      .top-row {
+        display: flex;
+        align-items: center;
+        span {
+          font-weight: bold;
+          margin-right: 18px;
+        }
+        .span-company {
+          color: color(desatDarkCyan);
+        }
+        .span-new, .span-featured {
+          text-transform: uppercase;
+          font-size: 10px;
+          padding: 8px 10px 5px 8px;
+          border-radius: 50px;
+          color: white;
+        }
+
+        .span-new {
+          background-color: color(desatDarkCyan);
+        }
+
+        .span-featured {
+          background-color: color(vDarkGrayCyan);
+        }
+      }
+
+      .bottom-row {
+        margin: 0;
+        padding: 0;
+        white-space: nowrap;
+        width: fit-content;
+        li {
+          position: relative;
+          display: inline;
+          white-space: nowrap;
+          color: color(darkGrayCyan);
+          margin-right: 40px;
+          @include mobile {
+            margin-right: 22px;
+            font-size: 13px;
+          }
+          &:nth-child(2)::before {
+            content: "";
+            background-color: color(lightGrayDots);
+            left: -20px;
+            @include mobile {
+              left: -12px;
+              bottom: 6px;
+            }
+            bottom: 8px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            position: absolute;
+          }
+          &:nth-child(2)::after {
+            content: "";
+            background-color: color(lightGrayDots);
+            right: -20px;
+            @include mobile {
+              right: -12px;
+              bottom: 6px;
+            }
+            bottom: 8px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            position: absolute;
+          }
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+}
+
+.job.featured::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  background-color: color(desatDarkCyan);
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.job-tags {
+  margin-left: auto;
+  @include mobile {
+    margin-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.hide {
+  display: none;
+  @include mobile {
+    display: flex;
+  }
+}
+
+hr {
+  width: 100%;
+  border-width: 1px;
+}
